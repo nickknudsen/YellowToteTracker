@@ -27,8 +27,14 @@ public class Video {
 
 		MatWindow window = new MatWindow("Camera");
 		MatWindow threshWindow = new MatWindow("Thresh");
+		
 
-		VideoCapture camera = new VideoCapture(0);
+		VideoCapture camera = new VideoCapture();
+		camera.open("http://10.25.26.23:80/mjpg/video.mjpg");
+		while(!camera.isOpened()) {
+			System.out.print("Camera not Open");
+			camera.open("http://10.25.26.23:80/mjpg/video.mjpg");
+		}
 
 		JFrame jFrame = new JFrame("Options");
 		jFrame.setSize(200, 200);
